@@ -62,6 +62,12 @@
 		<logback-ext-spring_version>0.1.4</logback-ext-spring_version>
 		<!-- Test Libs -->
 		<junit_version>4.12</junit_version>
+
+		<!-- ====================================== -->
+		<!-- 配置远程docker服务地址，镜像打包名称前缀     -->
+		<!-- ====================================== -->
+		<remote.docker.prefix>fisher</remote.docker.prefix>
+		<remote.docker.ip>192.168.3.35</remote.docker.ip>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
