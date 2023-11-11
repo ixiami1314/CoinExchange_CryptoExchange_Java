@@ -29,7 +29,7 @@ public class BusinessAuthApply {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Member member;
     /**
      * 认证商家状态
@@ -56,7 +56,7 @@ public class BusinessAuthApply {
     private String authInfo;
 
     @ManyToOne
-    @JoinColumn(name="business_auth_deposit_id")
+    @JoinColumn(name="business_auth_deposit_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private BusinessAuthDeposit businessAuthDeposit;
 
     private String depositRecordId;

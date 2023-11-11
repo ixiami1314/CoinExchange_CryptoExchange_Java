@@ -81,7 +81,7 @@ public class Order {
     /**
      * 币种
      */
-    @JoinColumn(name = "coin_id", nullable = false)
+    @JoinColumn(name = "coin_id", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private OtcCoin coin;
 

@@ -25,7 +25,7 @@ public class BusinessAuthDeposit {
      * 押金币种
      */
     @OneToOne
-    @JoinColumn(name = "coin_id")
+    @JoinColumn(name = "coin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
     /**
      * 押金数额
@@ -36,7 +36,7 @@ public class BusinessAuthDeposit {
     private Date createTime;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Admin admin;
 
     /**

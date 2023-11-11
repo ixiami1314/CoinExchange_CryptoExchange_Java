@@ -27,7 +27,7 @@ public class LegalWalletWithdraw {
      * 申请人
      */
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Member member;
 
     /**
@@ -57,7 +57,7 @@ public class LegalWalletWithdraw {
     /**
      * 审核人
      */
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Admin admin;
     /**
@@ -77,7 +77,7 @@ public class LegalWalletWithdraw {
      */
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "coin_name")
+    @JoinColumn(name = "coin_name", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
 
     /**

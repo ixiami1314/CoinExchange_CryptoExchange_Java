@@ -26,7 +26,7 @@ public class Feedback {
     /**
      * 反馈者
      */
-    @JoinColumn(name = "member_id",nullable = false)
+    @JoinColumn(name = "member_id",nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Member member;
 }

@@ -22,18 +22,18 @@ public class MemberSignRecord {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "sign_id")
+    @JoinColumn(name = "sign_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Sign sign;
 
     /**
      * 赠送币种
      */
     @OneToOne
-    @JoinColumn(name = "coin_name")
+    @JoinColumn(name = "coin_name", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
 
     /**

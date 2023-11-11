@@ -21,11 +21,11 @@ public class DepositRecord {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "coin_id")
+    @JoinColumn(name = "coin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
 
     private BigDecimal amount;

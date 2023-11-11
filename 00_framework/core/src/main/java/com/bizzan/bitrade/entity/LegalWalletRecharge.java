@@ -26,7 +26,7 @@ public class LegalWalletRecharge {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Member member;
 
     @NotNull
@@ -42,7 +42,7 @@ public class LegalWalletRecharge {
      */
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "coin_name")
+    @JoinColumn(name = "coin_name", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
     /**
      * 充值状态
@@ -77,7 +77,7 @@ public class LegalWalletRecharge {
     private Date dealTime;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Admin admin;
 
     @UpdateTimestamp

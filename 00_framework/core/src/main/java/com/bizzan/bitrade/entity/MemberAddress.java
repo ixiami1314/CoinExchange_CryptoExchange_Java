@@ -29,7 +29,7 @@ public class MemberAddress {
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date deleteTime;
-    @JoinColumn(name = "coin_id")
+    @JoinColumn(name = "coin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Coin coin;
     private String address;

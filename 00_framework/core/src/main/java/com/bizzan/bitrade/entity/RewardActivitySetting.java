@@ -22,7 +22,7 @@ public class RewardActivitySetting {
     @Id
     private Long id;
 
-    @JoinColumn(name = "coin_id", nullable = false)
+    @JoinColumn(name = "coin_id", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Coin coin;
     /**
@@ -47,7 +47,7 @@ public class RewardActivitySetting {
     /**
      * 最近更改者
      */
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Admin admin;
 }

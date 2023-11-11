@@ -23,7 +23,7 @@ public class MemberWallet {
     private Long memberId;
 
     @ManyToOne
-    @JoinColumn(name = "coin_id")
+    @JoinColumn(name = "coin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
     /**
      * 可用余额

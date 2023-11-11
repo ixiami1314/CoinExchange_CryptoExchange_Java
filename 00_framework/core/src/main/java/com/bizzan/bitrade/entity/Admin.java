@@ -51,7 +51,7 @@ public class Admin {
 
 
     @NotFound(action= NotFoundAction.IGNORE)
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "department_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(cascade = CascadeType.MERGE)
     private Department department;
 

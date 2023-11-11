@@ -26,7 +26,7 @@ public class BusinessCancelApply {
     private Long id ;
 
     @ManyToOne
-    @JoinColumn(name="member_id")
+    @JoinColumn(name="member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Member member;
 
     @Enumerated(value = EnumType.ORDINAL)

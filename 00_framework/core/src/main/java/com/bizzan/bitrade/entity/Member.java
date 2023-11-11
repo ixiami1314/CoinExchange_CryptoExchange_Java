@@ -141,7 +141,7 @@ public class Member {
     private int secondLevel = 0;
     private int thirdLevel = 0;
 
-    @JoinColumn(name = "local")
+    @JoinColumn(name = "local", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Country country;
     /**

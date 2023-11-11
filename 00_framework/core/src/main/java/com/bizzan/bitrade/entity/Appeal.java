@@ -23,7 +23,7 @@ public class Appeal {
     @Id
     private Long id;
 
-    @JoinColumn(name = "order_id", nullable = false, unique = true)
+    @JoinColumn(name = "order_id", nullable = false, unique = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @OneToOne
     private Order order;
 
@@ -65,7 +65,7 @@ public class Appeal {
     /**
      * 处理者
      */
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Admin admin;
 }

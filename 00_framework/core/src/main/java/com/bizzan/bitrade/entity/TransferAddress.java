@@ -18,7 +18,7 @@ public class TransferAddress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    @JoinColumn(name = "coin_id")
+    @JoinColumn(name = "coin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Coin coin;
     private String address;

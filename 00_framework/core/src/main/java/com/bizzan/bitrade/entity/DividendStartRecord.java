@@ -45,7 +45,7 @@ public class DividendStartRecord {
     @Column(columnDefinition = "decimal(18,6) comment '数量'")
     private BigDecimal amount;
 
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Admin admin;
 }

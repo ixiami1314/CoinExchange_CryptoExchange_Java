@@ -21,7 +21,7 @@ public class RewardRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    @JoinColumn(name = "coin_id", nullable = false)
+    @JoinColumn(name = "coin_id", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Coin coin;
     private String  remark;
@@ -29,7 +29,7 @@ public class RewardRecord {
     private RewardRecordType type;
     @Column(columnDefinition = "decimal(18,8) comment '数目'")
     private BigDecimal amount;
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Member member;
     /**

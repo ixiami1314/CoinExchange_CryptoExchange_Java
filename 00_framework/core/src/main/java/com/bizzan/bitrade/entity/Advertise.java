@@ -51,7 +51,7 @@ public class Advertise implements Serializable {
      * 广告拥有者
      */
     @ExcelEntity
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Member member;
 
@@ -69,7 +69,7 @@ public class Advertise implements Serializable {
      * 币种
      */
     @ExcelEntity
-    @JoinColumn(name = "coin_id")
+    @JoinColumn(name = "coin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @NotNull(message = "{Advertise.coin.null}")
     @ManyToOne
     private OtcCoin coin;
@@ -78,7 +78,7 @@ public class Advertise implements Serializable {
      * 国家
      */
     @NotNull(message = "{Advertise.country.null}")
-    @JoinColumn(name = "country")
+    @JoinColumn(name = "country", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Country country;
 

@@ -3,18 +3,7 @@ package com.bizzan.bitrade.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -41,7 +30,7 @@ public class CtcOrder {
 	 * 订单发起用户
 	 */
 	@ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
 	private Member member;
 	
 	/**
@@ -55,7 +44,7 @@ public class CtcOrder {
 	 */
 	@JsonIgnore
 	@ManyToOne
-    @JoinColumn(name = "acceptor_id")
+    @JoinColumn(name = "acceptor_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
 	private Member acceptor;
 	
 	/**

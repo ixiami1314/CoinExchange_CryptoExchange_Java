@@ -34,7 +34,7 @@ public class WithdrawRecord {
     /**
      * 币种
      */
-    @JoinColumn(name = "coin_id", nullable = false)
+    @JoinColumn(name = "coin_id", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Coin coin;
     /**
@@ -71,7 +71,7 @@ public class WithdrawRecord {
     /**
      * 审核人
      */
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Admin admin;
     @Enumerated(EnumType.ORDINAL)

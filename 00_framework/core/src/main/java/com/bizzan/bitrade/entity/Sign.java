@@ -30,7 +30,7 @@ public class Sign {
      * 赠送币种
      */
     @OneToOne
-    @JoinColumn(name = "coin_name")
+    @JoinColumn(name = "coin_name", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Coin coin;
 
     /**

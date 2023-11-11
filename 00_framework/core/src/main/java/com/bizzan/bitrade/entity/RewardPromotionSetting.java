@@ -30,7 +30,7 @@ public class RewardPromotionSetting {
     /**
      * 如果是币币交易推广不用设置币种
      */
-    @JoinColumn(name = "coin_id", nullable = true)
+    @JoinColumn(name = "coin_id", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Coin coin;
     /**
@@ -61,7 +61,7 @@ public class RewardPromotionSetting {
     /**
      * 最近更改者
      */
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne
     private Admin admin;
 

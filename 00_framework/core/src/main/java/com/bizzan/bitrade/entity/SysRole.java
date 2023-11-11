@@ -41,8 +41,8 @@ public class SysRole {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)//该fetch保证能通过id查到role，否则会报延迟加载异常
     @JoinTable(name = "admin_role_permission",
             uniqueConstraints = {@UniqueConstraint(columnNames={"role_id", "rule_id"})},
-            joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "rule_id",referencedColumnName = "id")})
+            joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))},
+            inverseJoinColumns = {@JoinColumn(name = "rule_id",referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))})
     @JsonIgnore
     private List<SysPermission> permissions;
 
