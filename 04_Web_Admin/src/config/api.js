@@ -1,4 +1,5 @@
 export default {
+    // host: 'http://1.94.53.61:6010',
     host: 'http://localhost:6010',
     common: {
         login: '/admin/system/employee/sign/in'

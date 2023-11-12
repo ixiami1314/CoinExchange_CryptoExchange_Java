@@ -1,7 +1,9 @@
 import axios from 'axios'
 import qs from 'qs'
 
+// export const BASEURL = axios.defaults.baseURL = 'http://1.94.53.61:6010/';
 export const BASEURL = axios.defaults.baseURL = 'http://localhost:6010/';
+axios.defaults.withCredentials = true
 
 export const fetch = (url, params = {}) => {
     return new Promise((resolve, reject) => {

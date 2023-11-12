@@ -12,7 +12,9 @@ import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -109,10 +111,19 @@ public class ShiroConfig {
      * 设置rememberMe  Cookie 7天
      * @return
      */
-    @Bean(name="simpleCookie")
-    public SimpleCookie getSimpleCookie(){
+    @Bean(name="rememberMeCookie")
+    public SimpleCookie getRememberMeCookie(){
         SimpleCookie simpleCookie = new SimpleCookie();
         simpleCookie.setName("rememberMe");
+        simpleCookie.setHttpOnly(true);
+        simpleCookie.setMaxAge(7*24*60*60);
+        return simpleCookie ;
+    }
+
+    @Bean(name = "simpleCookie")
+    public SimpleCookie getSimpleCookie(){
+        SimpleCookie simpleCookie = new SimpleCookie();
+        simpleCookie.setName("shiro.session");
         simpleCookie.setHttpOnly(true);
         simpleCookie.setMaxAge(7*24*60*60);
         return simpleCookie ;
@@ -123,8 +134,8 @@ public class ShiroConfig {
      * @return
      */
     @Bean(name="cookieRememberMeManager")
-    @DependsOn({"simpleCookie"})
-    public CookieRememberMeManager getCookieRememberMeManager(SimpleCookie simpleCookie){
+    @DependsOn({"rememberMeCookie"})
+public CookieRememberMeManager getCookieRememberMeManager(@Qualifier("rememberMeCookie") SimpleCookie simpleCookie){
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(simpleCookie);
         /**
@@ -132,6 +143,15 @@ public class ShiroConfig {
          */
         cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
         return cookieRememberMeManager ;
+    }
+
+
+    @Bean(name="sessionManager")
+    @DependsOn({"simpleCookie"})
+    public DefaultWebSessionManager defaultWebSessionManager (@Qualifier("simpleCookie") SimpleCookie simpleCookie) {
+        DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
+        defaultWebSessionManager.setSessionIdCookie(simpleCookie);
+        return defaultWebSessionManager;
     }
 
     /**
@@ -143,12 +163,13 @@ public class ShiroConfig {
      */
 
     @Bean(name = "securityManager")
-    @DependsOn({"adminRealm","ehCacheManager","cookieRememberMeManager"})
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(AdminRealm realm, EhCacheManager ehCacheManager,CookieRememberMeManager cookieRememberMeManager) {
+    @DependsOn({"adminRealm","ehCacheManager","cookieRememberMeManager", "simpleCookie"})
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(AdminRealm realm, EhCacheManager ehCacheManager,CookieRememberMeManager cookieRememberMeManager, @Qualifier("simpleCookie") SimpleCookie simpleCookie) {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         //设置realm.
         defaultWebSecurityManager.setRealm(realm);
         defaultWebSecurityManager.setCacheManager(ehCacheManager);
+        defaultWebSecurityManager.setSessionManager(defaultWebSessionManager(simpleCookie));
         defaultWebSecurityManager.setRememberMeManager(cookieRememberMeManager);
         return defaultWebSecurityManager;
     }

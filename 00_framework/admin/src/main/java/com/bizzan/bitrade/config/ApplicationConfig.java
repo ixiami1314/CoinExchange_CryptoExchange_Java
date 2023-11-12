@@ -1,5 +1,6 @@
 package com.bizzan.bitrade.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ import com.bizzan.bitrade.interceptor.SessionInterceptor;
  * @author Administrator
  */
 @Configuration
+@Slf4j
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
     @Bean(name = "messageSource")
@@ -59,12 +61,16 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/code/sms-provider/**","/captcha","/system/employee/sign/in",
-                        "/system/employee/check","/system/employee/logout",
+                .excludePathPatterns("/code/sms-provider/**",
+                        "/captcha",
+                        "/system/employee/sign/in",
+                        "/system/employee/check",
+                        "/system/employee/logout",
                         "/noauth/exchange-coin/detail",
                         "/noauth/exchange-coin/modify-limit");
         registry.addInterceptor(new LogInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new OutExcelInterceptor()).addPathPatterns("/**/out-excel");
+        log.info("- [interceptor] 初始化完成");
         super.addInterceptors(registry);
     }
 
